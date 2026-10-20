@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Little Note For Just You ♡</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #F5EBDD;
+      --cream-light: #FFFDF8;
+      --navy: #263F67;
+      --blue: #426A9D;
+      --blue-light: #E5EDF7;
+      --text: #4C5360;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 16px;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--navy);
+      background-color: var(--cream);
+      background-image:
+        linear-gradient(#263f6709 1px, transparent 1px),
+        linear-gradient(90deg, #263f6709 1px, transparent 1px);
+      background-size: 25px 25px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      background: var(--cream-light);
+      border: 1px solid #E5D9C7;
+      border-radius: 24px;
+      padding: 30px 24px;
+      box-shadow: 0 18px 50px #263f6712;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      animation: appear 0.8s ease;
+    }
+
+    .top-label {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 50px;
+      background: var(--blue-light);
+      color: var(--navy);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .heart {
+      margin: 22px 0 12px;
+      font-size: 35px;
+      color: var(--blue);
+      animation: heartbeat 2s infinite;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(29px, 7vw, 38px);
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text);
+      max-width: 340px;
+      margin: 0 auto 24px;
+    }
+
+    .divider {
+      width: 55px;
+      height: 3px;
+      border-radius: 10px;
+      background: var(--blue);
+      margin: 0 auto 24px;
+    }
+
+    .question {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .choices {
+      display: grid;
+      gap: 10px;
+    }
+
+    .choice {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #D9E2EF;
+      background: #F9FAFC;
+      color: var(--navy);
+      border-radius: 13px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      text-align: left;
+      transition: 0.25s ease;
+    }
+
+    .choice:hover {
+      background: var(--blue-light);
+      border-color: var(--blue);
+      transform: translateY(-2px);
+    }
+
+    .choice span {
+      margin-right: 9px;
+    }
+
+    .response {
+      display: none;
+      margin-top: 20px;
+      padding: 19px 16px;
+      background: var(--blue-light);
+      border-radius: 15px;
+      line-height: 1.8;
+      font-size: 14px;
+      animation: appear 0.5s ease;
+    }
+
+    .response.show {
+      display: block;
+    }
+
+    .response h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      margin-bottom: 9px;
+    }
+
+    .main-button {
+      margin-top: 18px;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: var(--navy);
+      color: white;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .main-button:hover {
+      background: var(--blue);
+      transform: translateY(-2px);
+    }
+
+    .final-note {
+      display: none;
+      margin-top: 16px;
+      padding: 18px;
+      border: 1px dashed #A9BAD1;
+      border-radius: 14px;
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      line-height: 1.9;
+      animation: appear 0.6s ease;
+    }
+
+    .final-note.show {
+      display: block;
+    }
+
+    .footer {
+      margin-top: 25px;
+      color: #818897;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .restart {
+      display: none;
+      background: transparent;
+      border: 1px solid #B9C8DB;
+      color: var(--navy);
+      border-radius: 10px;
+      padding: 10px 16px;
+      margin-top: 14px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .restart.show {
+      display: inline-block;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+
+    @media (max-width: 380px) {
+      .container {
+        padding: 25px 17px;
+      }
+
+      h1 {
+        font-size: 29px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <div class="top-label">♡ Sekedar Tasji'an buat Kamu ♡</div>
+
+    <div class="heart">♡</div>
+
+    <h1>Hey, how are you?</h1>
+
+    <p class="subtitle">
+      Ana mau nanya nih...
+      Tapi kali ini, jawab sejujurnya aja ya, mamnu' kadzab.
+      Ana yakin kamu adalah orang kuat.
+    </p>
+
+    <div class="divider"></div>
+
+    <p class="question">How are you feeling today?</p>
+
+    <div class="choices" id="choices">
+      <button class="choice" onclick="chooseMood('happy')">
+        <span>☀️</span> Aku baik-baik saja!
+      </button>
+
+      <button class="choice" onclick="chooseMood('tired')">
+        <span>☁️</span> Lumayan, cuma agak capek.
+      </button>
+
+      <button class="choice" onclick="chooseMood('sad')">
+        <span>🌧️</span> Jujur, hari ini cukup berat.
+      </button>
+
+      <button class="choice" onclick="chooseMood('confused')">
+        <span>🌙</span> Aku sendiri nggak tahu.
+      </button>
+    </div>
+
+    <section class="response" id="response" aria-live="polite">
+      <h2 id="responseTitle"></h2>
+      <p id="responseText"></p>
+    </section>
+
+    <button class="main-button" id="nextButton"
+      onclick="showFinal()" style="display:none">
+      Ada satu hal lagi untukmu ♡
+    </button>
+
+    <section class="final-note" id="finalNote" aria-live="polite">
+      <p>
+        Apa pun yang sedang kamu rasakan,
+        semoga kamu ingat bahwa kamu sudah berusaha sejauh ini.
+        <br><br>
+        Ingatlah Do'a Do'a yang dilangitkan ga akan salah berpulang.
+        Jangan memikirkan hal-hal di luar kendali kita, ingat perolongan Allah itu nyata.
+        Oh yaa satu lagi jangan terlalu keras pada dirimu sendiri. 
+        <br><br>
+        <strong>You're doing better than you think. ♡</strong>
+      </p>
+    </section>
+
+    <button class="restart" id="restartButton" onclick="restartPage()">
+      ↻ Baca lagi
+    </button>
+
+    <div class="footer">MADE WITH A LITTLE CARE FROM ARAA ♡</div>
+  </main>
+
+  <script>
+    const moods = {
+      happy: {
+        title: "I'm happy for you! ☀️",
+        text: "Wahh Alhamdulillah ana seneng dengernya! Semoga hal-hal baik terus datang kepadamu. Jangan lupa menikmati kebahagiaan kecil yang kamu punya hari ini, ya."
+      },
+
+      tired: {
+        title: "Take a little rest. ☁️",
+        text: "Hmmm Gapapa kok Kamu sudah berusaha sejauh ini. Nggak apa-apa banget kalau hari ini kamu ingin berhenti sebentar. Kamu juga berhak istirahat tanpa merasa bersalah."
+      },
+
+      sad: {
+        title: "It's okay to feel this way. 🌧️",
+        text: "Hmmm ana tahu kok mungkin nggak semuanya mudah. Kamu nggak harus selalu terlihat kuat. Semoga setelah hari yang berat ini, ada hal kecil yang membuatmu tersenyum lagi, inna ma'al usri yusro."
+      },
+
+      confused: {
+        title: "I wish you happy in everything. 🌙",
+        text: "Semangat terus Kamu adalah orang yang hebat, tetap semangat menjalani hari-hari yang berat. Kamu nggak harus punya semua jawabannya sekarang. Pelan-pelan aja, ya. Allah selalu bersama kita"
+      }
+    };
+
+    function chooseMood(mood) {
+      const response = document.getElementById("response");
+      const selected = moods[mood];
+
+      document.getElementById("responseTitle").textContent = selected.title;
+      document.getElementById("responseText").textContent = selected.text;
+
+      response.classList.remove("show");
+      void response.offsetWidth;
+      response.classList.add("show");
+
+      document.getElementById("nextButton").style.display = "block";
+      document.getElementById("finalNote").classList.remove("show");
+      document.getElementById("restartButton").classList.remove("show");
+
+      response.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+      });
+    }
+
+    function showFinal() {
+      const note = document.getElementById("finalNote");
+      note.classList.add("show");
+
+      document.getElementById("nextButton").style.display = "none";
+      document.getElementById("restartButton").classList.add("show");
+
+      note.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+      });
+    }
+
+    function restartPage() {
+      document.getElementById("response").classList.remove("show");
+      document.getElementById("finalNote").classList.remove("show");
+      document.getElementById("nextButton").style.display = "none";
+      document.getElementById("restartButton").classList.remove("show");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+  </script>
+</body>
+</html>
